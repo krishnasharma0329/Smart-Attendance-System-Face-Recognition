@@ -1,0 +1,20 @@
+
+services:
+  attendance-system:
+    build: .
+    container_name: smart-attendance
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_QPA_PLATFORM=xcb
+    volumes:
+      # Share X11 display so GUI appears on your screen
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Persist database and trained model outside container
+      - ./attendance.db:/app/attendance.db
+      - ./dataset:/app/dataset
+      - ./trainer.yml:/app/trainer.yml
+    devices:
+      # Share webcam with container
+      - /dev/video0:/dev/video0
+    network_mode: host
+    restart: unless-stopped
