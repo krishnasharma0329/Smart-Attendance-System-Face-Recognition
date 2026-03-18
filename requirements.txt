@@ -1,4 +1,6 @@
-opencv-python
-opencv-contrib-python
+streamlit
+opencv-python-headless
+opencv-contrib-python-headless
 numpy
 Pillow
+pandas
